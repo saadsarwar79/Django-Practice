@@ -307,11 +307,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
 
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    ".railway.app",
-]
+ALLOWED_HOSTS = ['*']
 
 # ===============================
 # APPLICATIONS
@@ -371,7 +367,7 @@ WSGI_APPLICATION = 'NextCare.wsgi.application'
 
 if os.getenv("DATABASE_URL"):
     DATABASES = {
-        "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
     }
 else:
     DATABASES = {
@@ -406,7 +402,7 @@ USE_TZ = True
 # ===============================
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
