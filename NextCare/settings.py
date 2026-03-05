@@ -367,17 +367,11 @@ WSGI_APPLICATION = 'NextCare.wsgi.application'
 # DATABASE
 # ===============================
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR}/db.sqlite3",
+        conn_max_age=600
+    )
 }
-POSTGRES_LOCALLY = False
-ENVIRONMENT = os.getenv("ENVIRONMENT")
-
-if ENVIRONMENT == "production" or POSTGRES_LOCALLY == True:
-    DATABASES['default'] = dj_database_url.parse(os.getenv("DATABASE_URL"))
-
 # ===============================
 # PASSWORD VALIDATION
 # ===============================
