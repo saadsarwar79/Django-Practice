@@ -307,13 +307,13 @@ SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
 
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django-practice-production-saad.up.railway.app']
 
 # ===============================
 # APPLICATIONS
 # ===============================
 CSRF_TRUSTED_ORIGINS = [
-    "https://django-practice-production-3e38.up.railway.app"
+    "https://django-practice-production-saad.up.railway.app"
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
